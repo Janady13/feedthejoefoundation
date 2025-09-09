@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help! I'm a Starving Developer! 🎮</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka', cursive;
+            background: linear-gradient(180deg, #87CEEB 0%, #FFE4B5 50%, #FFB6C1 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .clouds {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+            opacity: 0.7;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+        }
+
+        .cloud1 {
+            width: 100px;
+            height: 40px;
+            top: 10%;
+            animation: float 20s infinite;
+        }
+
+        .cloud1::before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 10px;
+        }
+
+        .cloud1::after {
+            width: 60px;
+            height: 40px;
+            top: -15px;
+            right: 10px;
+        }
+
+        .cloud2 {
+            width: 80px;
+            height: 35px;
+            top: 30%;
+            animation: float 25s infinite;
+            animation-delay: 5s;
+        }
+
+        .cloud2::before {
+            width: 40px;
+            height: 40px;
+            top: -20px;
+            left: 15px;
+        }
+
+        .cloud2::after {
+            width: 50px;
+            height: 35px;
+            top: -10px;
+            right: 15px;
+        }
+
+        @keyframes float {
+            from { left: -150px; }
+            to { left: 100%; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #FF6B6B;
+            text-shadow: 3px 3px 0px #FFD93D,
+                         6px 6px 0px #6BCF7F,
+                         9px 9px 0px #4ECDC4;
+            margin-bottom: 10px;
+            animation: wiggle 1s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        .developer-character {
+            width: 200px;
+            height: 200px;
+            margin: 30px auto;
+            position: relative;
+            animation: sway 3s infinite;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .dev-head {
+            width: 120px;
+            height: 120px;
+            background: #FDBCB4;
+            border-radius: 50%;
+            margin: 0 auto;
+            position: relative;
+            border: 4px solid #333;
+        }
+
+        .eyes {
+            position: absolute;
+            top: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .eye {
+            width: 25px;
+            height: 25px;
+            background: white;
+            border-radius: 50%;
+            border: 3px solid #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pupil {
+            width: 15px;
+            height: 15px;
+            background: #333;
+            border-radius: 50%;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            animation: lookAround 4s infinite;
+        }
+
+        @keyframes lookAround {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(5px, 0); }
+            50% { transform: translate(0, 5px); }
+            75% { transform: translate(-5px, 0); }
+        }
+
+        .mouth {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 20px;
+            border: 3px solid #333;
+            border-top: none;
+            border-radius: 0 0 40px 40px;
+        }
+
+        .hair {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 130px;
+            height: 40px;
+            background: #8B4513;
+            border-radius: 50% 50% 0 0;
+            border: 3px solid #333;
+        }
+
+        .speech-bubble {
+            background: white;
+            border: 4px solid #333;
+            border-radius: 30px;
+            padding: 20px;
+            margin: 20px;
+            position: relative;
+            box-shadow: 5px 5px 0px #FFD93D;
+            animation: pop 0.5s ease-out;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0); }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50px;
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid #333;
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -14px;
+            left: 53px;
+            width: 0;
+            height: 0;
+            border-left: 17px solid transparent;
+            border-right: 17px solid transparent;
+            border-top: 17px solid white;
+        }
+
+        .status-card {
+            background: #FFE4E1;
+            border: 4px solid #333;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px;
+            box-shadow: 5px 5px 0px #98D8C8;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            font-size: 1.2em;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #333;
+        }
+
+        .stat-label {
+            color: #FF6B6B;
+            font-weight: 600;
+        }
+
+        .stat-value {
+            color: #4ECDC4;
+            font-weight: 700;
+        }
+
+        .payment-zone {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: 4px solid #333;
+            border-radius: 30px;
+            padding: 30px;
+            margin: 30px 20px;
+            box-shadow: 8px 8px 0px #FFD93D;
+            text-align: center;
+        }
+
+        .payment-title {
+            color: white;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px #333;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .payment-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .pay-btn {
+            padding: 20px 40px;
+            font-size: 1.3em;
+            font-weight: 700;
+            border: 4px solid #333;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 300px;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+        }
+
+        .pay-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+
+        .pay-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .pay-btn:hover::before {
+            animation: shine 0.5s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .cashapp-btn {
+            background: linear-gradient(135deg, #00D632, #00961F);
+            color: white;
+        }
+
+        .venmo-btn {
+            background: linear-gradient(135deg, #3D95CE, #1F5F8B);
+            color: white;
+        }
+
+        .progress-container {
+            background: white;
+            border: 4px solid #333;
+            border-radius: 50px;
+            padding: 5px;
+            margin: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 40px;
+            background: linear-gradient(90deg, #FFD93D, #FF6B6B, #6BCF7F, #4ECDC4);
+            background-size: 400% 100%;
+            border-radius: 50px;
+            width: 15%;
+            animation: gradient 3s ease infinite, grow 30s ease-in-out infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes grow {
+            0%, 100% { width: 15%; }
+            50% { width: 25%; }
+        }
+
+        .progress-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 700;
+            color: #333;
+            font-size: 1.2em;
+        }
+
+        .rewards {
+            background: #98FB98;
+            border: 4px solid #333;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px;
+            box-shadow: 5px 5px 0px #FFB6C1;
+        }
+
+        .reward-item {
+            background: white;
+            border: 2px solid #333;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.3s;
+        }
+
+        .reward-item:hover {
+            transform: translateX(10px);
+        }
+
+        .reward-emoji {
+            font-size: 2em;
+        }
+
+        .reward-text {
+            flex: 1;
+        }
+
+        .reward-amount {
+            color: #FF6B6B;
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .floating-icons {
+            position: fixed;
+            font-size: 40px;
+            animation: floatUp 4s infinite;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .pay-btn {
+                width: 250px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="clouds">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+    </div>
+
+    <div class="floating-icons" style="left: 10%; animation-delay: 0s;">💻</div>
+    <div class="floating-icons" style="left: 30%; animation-delay: 1s;">☕</div>
+    <div class="floating-icons" style="left: 50%; animation-delay: 2s;">🍕</div>
+    <div class="floating-icons" style="left: 70%; animation-delay: 3s;">🎮</div>
+    <div class="floating-icons" style="left: 90%; animation-delay: 4s;">💰</div>
+
+    <div class="container">
+        <div class="header">
+            <h1>SAVE ME!</h1>
+            <p style="font-size: 1.5em; color: #4ECDC4;">I'm Just a Hungry Developer! 🥺</p>
+        </div>
+
+        <div class="developer-character">
+            <div class="dev-head">
+                <div class="hair"></div>
+                <div class="eyes">
+                    <div class="eye">
+                        <div class="pupil"></div>
+                    </div>
+                    <div class="eye">
+                        <div class="pupil"></div>
+                    </div>
+                </div>
+                <div class="mouth"></div>
+            </div>
+        </div>
+
+        <div class="speech-bubble">
+            <p style="font-size: 1.3em; color: #FF6B6B;">
+                "Help! I've been living on instant ramen and false hope! 🍜"
+            </p>
+            <p style="margin-top: 10px; color: #4ECDC4;">
+                Every donation helps me level up from "broke developer" to "slightly less broke developer"!
+            </p>
+        </div>
+
+        <div class="status-card">
+            <h2 style="text-align: center; color: #FF6B6B; margin-bottom: 20px;">
+                📊 Developer Stats 📊
+            </h2>
+            <div class="stat-item">
+                <span class="stat-label">Energy Level:</span>
+                <span class="stat-value">☕☕⚪⚪⚪</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Happiness:</span>
+                <span class="stat-value">😭</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Bank Account:</span>
+                <span class="stat-value">$0.42</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Code Quality:</span>
+                <span class="stat-value">It works! (sometimes)</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Last Shower:</span>
+                <span class="stat-value">Loading... ⏳</span>
+            </div>
+        </div>
+
+        <div class="payment-zone">
+            <h2 class="payment-title">💸 DONATION STATION 💸</h2>
+            <p style="color: white; font-size: 1.2em; margin-bottom: 20px;">
+                Choose your fighter! Er... payment method!
+            </p>
+            
+            <div class="payment-buttons">
+                <button class="pay-btn cashapp-btn">
+                    💵 CashApp: $Janady07
+                </button>
+                <button class="pay-btn venmo-btn">
+                    💳 Venmo: @thatdeveloperguyyyy
+                </button>
+            </div>
+
+            <p style="color: #FFD93D; font-size: 1.1em; margin-top: 20px;">
+                ⚡ Instant Karma Points Included! ⚡
+            </p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+            <div class="progress-label">15% to Next Pizza 🍕</div>
+        </div>
+
+        <div class="rewards">
+            <h2 style="text-align: center; color: #FF6B6B; margin-bottom: 20px;">
+                🎁 Donation Rewards! 🎁
+            </h2>
+            
+            <div class="reward-item">
+                <span class="reward-emoji">🌟</span>
+                <span class="reward-text">I'll name a variable after you!</span>
+                <span class="reward-amount">$1</span>
+            </div>
+            
+            <div class="reward-item">
+                <span class="reward-emoji">🎨</span>
+                <span class="reward-text">I'll add a comment that makes sense!</span>
+                <span class="reward-amount">$5</span>
+            </div>
+            
+            <div class="reward-item">
+                <span class="reward-emoji">🚀</span>
+                <span class="reward-text">I'll actually use Git properly for a week!</span>
+                <span class="reward-amount">$10</span>
+            </div>
+            
+            <div class="reward-item">
+                <span class="reward-emoji">🦄</span>
+                <span class="reward-text">I'll write unit tests (maybe)!</span>
+                <span class="reward-amount">$20</span>
+            </div>
+            
+            <div class="reward-item">
+                <span class="reward-emoji">🏆</span>
+                <span class="reward-text">I'll stop using "password123" for everything!</span>
+                <span class="reward-amount">$50</span>
+            </div>
+            
+            <div class="reward-item">
+                <span class="reward-emoji">👑</span>
+                <span class="reward-text">I'll finally learn what a monad is!</span>
+                <span class="reward-amount">$100</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p style="color: #FF6B6B; font-size: 1.3em; font-weight: 700;">
+                Thank you for keeping me alive! 💖
+            </p>
+            <p style="margin-top: 10px; color: #666;">
+                * No developers were harmed in the making of this website
+                <br>** Except emotionally, from debugging
+            </p>
+            <p style="margin-top: 20px; font-size: 2em;">
+                🎮 🍕 ☕ 💻 🚀
+            </p>
+        </div>
+    </div>
+</body>
+</html>
