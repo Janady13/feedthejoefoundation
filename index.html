@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Help! I'm a Starving Developer! 🎮</title>
+    <title>Feed The Joe - Help Me Build AI for Everyone! 🤖☕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1158174357019592"
+         crossorigin="anonymous"></script>
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
@@ -14,627 +18,810 @@
         }
 
         body {
-            font-family: 'Fredoka', cursive;
-            background: linear-gradient(180deg, #87CEEB 0%, #FFE4B5 50%, #FFB6C1 100%);
+            font-family: 'Comic Neue', cursive;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
         }
 
-        .clouds {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+        /* Floating Coffee Cups Animation */
+        .floating-coffee {
+            position: fixed;
+            font-size: 2rem;
+            animation: float 15s infinite ease-in-out;
             z-index: 1;
-        }
-
-        .cloud {
-            position: absolute;
-            background: white;
-            border-radius: 100px;
             opacity: 0.7;
         }
 
-        .cloud::before,
-        .cloud::after {
-            content: '';
-            position: absolute;
-            background: white;
-            border-radius: 100px;
-        }
-
-        .cloud1 {
-            width: 100px;
-            height: 40px;
-            top: 10%;
-            animation: float 20s infinite;
-        }
-
-        .cloud1::before {
-            width: 50px;
-            height: 50px;
-            top: -25px;
-            left: 10px;
-        }
-
-        .cloud1::after {
-            width: 60px;
-            height: 40px;
-            top: -15px;
-            right: 10px;
-        }
-
-        .cloud2 {
-            width: 80px;
-            height: 35px;
-            top: 30%;
-            animation: float 25s infinite;
-            animation-delay: 5s;
-        }
-
-        .cloud2::before {
-            width: 40px;
-            height: 40px;
-            top: -20px;
-            left: 15px;
-        }
-
-        .cloud2::after {
-            width: 50px;
-            height: 35px;
-            top: -10px;
-            right: 15px;
-        }
-
         @keyframes float {
-            from { left: -150px; }
-            to { left: 100%; }
+            0%, 100% { transform: translateY(100vh) rotate(0deg); }
+            50% { transform: translateY(-100px) rotate(360deg); }
         }
 
-        .container {
+        .coffee-1 { left: 10%; animation-delay: 0s; }
+        .coffee-2 { left: 30%; animation-delay: 3s; }
+        .coffee-3 { left: 50%; animation-delay: 6s; }
+        .coffee-4 { left: 70%; animation-delay: 9s; }
+        .coffee-5 { left: 90%; animation-delay: 12s; }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
             position: relative;
             z-index: 10;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
+        .hero h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
             animation: bounce 2s infinite;
+            margin-bottom: 1rem;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-20px); }
         }
 
-        h1 {
-            font-size: 3em;
-            color: #FF6B6B;
-            text-shadow: 3px 3px 0px #FFD93D,
-                         6px 6px 0px #6BCF7F,
-                         9px 9px 0px #4ECDC4;
-            margin-bottom: 10px;
-            animation: wiggle 1s ease-in-out infinite;
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 2rem;
+            animation: wiggle 2s infinite;
         }
 
         @keyframes wiggle {
-            0%, 100% { transform: rotate(-3deg); }
-            50% { transform: rotate(3deg); }
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(3deg); }
+            75% { transform: rotate(-3deg); }
         }
 
-        .developer-character {
+        /* Joe Avatar */
+        .joe-avatar {
             width: 200px;
             height: 200px;
-            margin: 30px auto;
-            position: relative;
-            animation: sway 3s infinite;
-        }
-
-        @keyframes sway {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
-
-        .dev-head {
-            width: 120px;
-            height: 120px;
-            background: #FDBCB4;
+            margin: 2rem auto;
+            background: #f4e4c1;
             border-radius: 50%;
-            margin: 0 auto;
             position: relative;
-            border: 4px solid #333;
+            animation: hungry-pulse 1.5s infinite;
+            border: 5px solid #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .eyes {
-            position: absolute;
-            top: 40px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .eye {
-            width: 25px;
-            height: 25px;
-            background: white;
-            border-radius: 50%;
-            border: 3px solid #333;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pupil {
-            width: 15px;
-            height: 15px;
-            background: #333;
-            border-radius: 50%;
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            animation: lookAround 4s infinite;
-        }
-
-        @keyframes lookAround {
-            0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(5px, 0); }
-            50% { transform: translate(0, 5px); }
-            75% { transform: translate(-5px, 0); }
-        }
-
-        .mouth {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 20px;
-            border: 3px solid #333;
-            border-top: none;
-            border-radius: 0 0 40px 40px;
-        }
-
-        .hair {
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 130px;
-            height: 40px;
-            background: #8B4513;
-            border-radius: 50% 50% 0 0;
-            border: 3px solid #333;
-        }
-
-        .speech-bubble {
-            background: white;
-            border: 4px solid #333;
-            border-radius: 30px;
-            padding: 20px;
-            margin: 20px;
-            position: relative;
-            box-shadow: 5px 5px 0px #FFD93D;
-            animation: pop 0.5s ease-out;
-        }
-
-        @keyframes pop {
-            0% { transform: scale(0); }
-            80% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .speech-bubble::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50px;
-            width: 0;
-            height: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-top: 20px solid #333;
-        }
-
-        .speech-bubble::before {
-            content: '';
-            position: absolute;
-            bottom: -14px;
-            left: 53px;
-            width: 0;
-            height: 0;
-            border-left: 17px solid transparent;
-            border-right: 17px solid transparent;
-            border-top: 17px solid white;
-        }
-
-        .status-card {
-            background: #FFE4E1;
-            border: 4px solid #333;
-            border-radius: 20px;
-            padding: 20px;
-            margin: 20px;
-            box-shadow: 5px 5px 0px #98D8C8;
-        }
-
-        .stat-item {
-            display: flex;
-            justify-content: space-between;
-            margin: 15px 0;
-            font-size: 1.2em;
-            padding: 10px;
-            background: white;
-            border-radius: 10px;
-            border: 2px solid #333;
-        }
-
-        .stat-label {
-            color: #FF6B6B;
-            font-weight: 600;
-        }
-
-        .stat-value {
-            color: #4ECDC4;
-            font-weight: 700;
-        }
-
-        .payment-zone {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: 4px solid #333;
-            border-radius: 30px;
-            padding: 30px;
-            margin: 30px 20px;
-            box-shadow: 8px 8px 0px #FFD93D;
-            text-align: center;
-        }
-
-        .payment-title {
-            color: white;
-            font-size: 2em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 0px #333;
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .payment-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-            margin: 20px 0;
-        }
-
-        .pay-btn {
-            padding: 20px 40px;
-            font-size: 1.3em;
-            font-weight: 700;
-            border: 4px solid #333;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 300px;
-            position: relative;
-            overflow: hidden;
-            text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
-        }
-
-        .pay-btn::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: rotate(45deg);
-            transition: all 0.5s;
-        }
-
-        .pay-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .pay-btn:hover::before {
-            animation: shine 0.5s ease-in-out;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .cashapp-btn {
-            background: linear-gradient(135deg, #00D632, #00961F);
-            color: white;
-        }
-
-        .venmo-btn {
-            background: linear-gradient(135deg, #3D95CE, #1F5F8B);
-            color: white;
-        }
-
-        .progress-container {
-            background: white;
-            border: 4px solid #333;
-            border-radius: 50px;
-            padding: 5px;
-            margin: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 40px;
-            background: linear-gradient(90deg, #FFD93D, #FF6B6B, #6BCF7F, #4ECDC4);
-            background-size: 400% 100%;
-            border-radius: 50px;
-            width: 15%;
-            animation: gradient 3s ease infinite, grow 30s ease-in-out infinite;
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes grow {
-            0%, 100% { width: 15%; }
-            50% { width: 25%; }
-        }
-
-        .progress-label {
+        .joe-avatar::before {
+            content: "😋";
+            font-size: 100px;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-weight: 700;
-            color: #333;
-            font-size: 1.2em;
         }
 
-        .rewards {
-            background: #98FB98;
-            border: 4px solid #333;
-            border-radius: 20px;
-            padding: 20px;
-            margin: 20px;
-            box-shadow: 5px 5px 0px #FFB6C1;
+        @keyframes hungry-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
-        .reward-item {
-            background: white;
-            border: 2px solid #333;
-            border-radius: 15px;
-            padding: 15px;
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: transform 0.3s;
+        /* Story Section */
+        .story-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 10;
         }
 
-        .reward-item:hover {
-            transform: translateX(10px);
-        }
-
-        .reward-emoji {
-            font-size: 2em;
-        }
-
-        .reward-text {
-            flex: 1;
-        }
-
-        .reward-amount {
-            color: #FF6B6B;
-            font-weight: 700;
-            font-size: 1.2em;
-        }
-
-        .footer {
+        .story-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.5rem;
+            color: #764ba2;
+            margin-bottom: 1.5rem;
             text-align: center;
-            padding: 30px;
+        }
+
+        .story-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
             color: #333;
-            font-size: 1.1em;
+            margin-bottom: 2rem;
         }
 
-        .floating-icons {
+        /* AI Features */
+        .ai-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Donation Tiers */
+        .donation-tiers {
+            background: rgba(255,255,255,0.95);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tier-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 3px solid transparent;
+            background-image: linear-gradient(white, white), linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tier-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .tier-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: emoji-dance 2s infinite;
+        }
+
+        @keyframes emoji-dance {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        .tier-name {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            color: #764ba2;
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-amount {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .tier-reward {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 1rem 0;
+            display: inline-block;
+        }
+
+        .tier-benefits {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .tier-benefits li {
+            margin: 0.5rem 0;
+            color: #555;
+        }
+
+        .tier-benefits li::before {
+            content: "✨ ";
+            color: #764ba2;
+        }
+
+        .donate-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Fredoka', sans-serif;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .donate-button::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .donate-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .donate-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .progress-bar-container {
+            background: #e0e0e0;
+            border-radius: 50px;
+            height: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 35%;
+            border-radius: 50px;
+            animation: progress-pulse 2s infinite;
+            position: relative;
+        }
+
+        @keyframes progress-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Fun Facts */
+        .fun-facts {
+            background: rgba(255,215,0,0.95);
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .fact-item {
+            font-size: 1.1rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: fact-slide 0.5s ease-out;
+        }
+
+        @keyframes fact-slide {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            width: 50px;
+            height: 50px;
+            margin: 20px auto;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #764ba2;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: white;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tiers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Notification */
+        .notification {
             position: fixed;
-            font-size: 40px;
-            animation: floatUp 4s infinite;
-            z-index: 1;
+            bottom: 20px;
+            right: 20px;
+            background: #4caf50;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: none;
+            animation: slide-in 0.5s ease-out;
+            z-index: 1000;
         }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
+        @keyframes slide-in {
+            from {
+                transform: translateX(400px);
             }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
+            to {
+                transform: translateX(0);
             }
         }
 
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-            .pay-btn {
-                width: 250px;
-                font-size: 1.1em;
-            }
+        .notification.error {
+            background: #f44336;
         }
     </style>
 </head>
 <body>
-    <div class="clouds">
-        <div class="cloud cloud1"></div>
-        <div class="cloud cloud2"></div>
+    <!-- Floating Coffee Cups -->
+    <div class="floating-coffee coffee-1">☕</div>
+    <div class="floating-coffee coffee-2">☕</div>
+    <div class="floating-coffee coffee-3">☕</div>
+    <div class="floating-coffee coffee-4">☕</div>
+    <div class="floating-coffee coffee-5">☕</div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>🍕 FEED THE JOE 🍔</h1>
+        <p class="hero-subtitle">Help a Hungry Developer Build AI for Everyone!</p>
+        
+        <div class="joe-avatar"></div>
+        
+        <p style="color: white; font-size: 1.3rem; margin-top: 2rem;">
+            "I survive on coffee, pizza, and YOUR generosity!" ☕🍕
+        </p>
     </div>
 
-    <div class="floating-icons" style="left: 10%; animation-delay: 0s;">💻</div>
-    <div class="floating-icons" style="left: 30%; animation-delay: 1s;">☕</div>
-    <div class="floating-icons" style="left: 50%; animation-delay: 2s;">🍕</div>
-    <div class="floating-icons" style="left: 70%; animation-delay: 3s;">🎮</div>
-    <div class="floating-icons" style="left: 90%; animation-delay: 4s;">💰</div>
-
-    <div class="container">
-        <div class="header">
-            <h1>SAVE ME!</h1>
-            <p style="font-size: 1.5em; color: #4ECDC4;">I'm Just a Hungry Developer! 🥺</p>
+    <!-- Story Section -->
+    <div class="story-section">
+        <h2 class="story-title">🎭 The Tragic (and Hilarious) Tale of Joe 🎭</h2>
+        
+        <div class="story-content">
+            <p><strong>Once upon a time...</strong> there was a developer named Joe who had a crazy dream: 
+            Make AI accessible to EVERYONE - not just big corporations with yacht money! 💰</p>
+            
+            <p>But there's a problem... Building AI is expensive, and Joe's diet consists mainly of:</p>
+            <ul style="margin: 1rem 2rem;">
+                <li>🍜 Instant ramen (the fancy kind with TWO flavor packets!)</li>
+                <li>☕ Coffee (basically liquid motivation)</li>
+                <li>🍕 Pizza (vegetable group, right? It has tomato sauce!)</li>
+                <li>🥤 Energy drinks (for those 3 AM debugging sessions)</li>
+            </ul>
+            
+            <p><strong>Your donation literally feeds Joe</strong> AND helps build amazing AI tools for regular people and small businesses! 
+            It's like charity, but funnier and with robots! 🤖</p>
         </div>
 
-        <div class="developer-character">
-            <div class="dev-head">
-                <div class="hair"></div>
-                <div class="eyes">
-                    <div class="eye">
-                        <div class="pupil"></div>
-                    </div>
-                    <div class="eye">
-                        <div class="pupil"></div>
-                    </div>
-                </div>
-                <div class="mouth"></div>
-            </div>
-        </div>
-
-        <div class="speech-bubble">
-            <p style="font-size: 1.3em; color: #FF6B6B;">
-                "Help! I've been living on instant ramen and false hope! 🍜"
-            </p>
-            <p style="margin-top: 10px; color: #4ECDC4;">
-                Every donation helps me level up from "broke developer" to "slightly less broke developer"!
-            </p>
-        </div>
-
-        <div class="status-card">
-            <h2 style="text-align: center; color: #FF6B6B; margin-bottom: 20px;">
-                📊 Developer Stats 📊
-            </h2>
-            <div class="stat-item">
-                <span class="stat-label">Energy Level:</span>
-                <span class="stat-value">☕☕⚪⚪⚪</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">Happiness:</span>
-                <span class="stat-value">😭</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">Bank Account:</span>
-                <span class="stat-value">$0.42</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">Code Quality:</span>
-                <span class="stat-value">It works! (sometimes)</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">Last Shower:</span>
-                <span class="stat-value">Loading... ⏳</span>
-            </div>
-        </div>
-
-        <div class="payment-zone">
-            <h2 class="payment-title">💸 DONATION STATION 💸</h2>
-            <p style="color: white; font-size: 1.2em; margin-bottom: 20px;">
-                Choose your fighter! Er... payment method!
-            </p>
-            
-            <div class="payment-buttons">
-                <a href="https://cash.app/$Janady07" target="_blank" style="text-decoration: none;">
-                    <button class="pay-btn cashapp-btn">
-                        💵 CashApp: $Janady07
-                    </button>
-                </a>
-                <a href="https://venmo.com/u/thatdeveloperguyyyy" target="_blank" style="text-decoration: none;">
-                    <button class="pay-btn venmo-btn">
-                        💳 Venmo: @thatdeveloperguyyyy
-                    </button>
-                </a>
-            </div>
-
-            <p style="color: #FFD93D; font-size: 1.1em; margin-top: 20px;">
-                ⚡ Instant Karma Points Included! ⚡
-            </p>
-        </div>
-
-        <div class="progress-container">
-            <div class="progress-bar"></div>
-            <div class="progress-label">15% to Next Pizza 🍕</div>
-        </div>
-
-        <div class="rewards">
-            <h2 style="text-align: center; color: #FF6B6B; margin-bottom: 20px;">
-                🎁 Donation Rewards! 🎁
-            </h2>
-            
-            <div class="reward-item">
-                <span class="reward-emoji">🌟</span>
-                <span class="reward-text">I'll name a variable after you!</span>
-                <span class="reward-amount">$1</span>
+        <h3 style="color: #764ba2; margin: 2rem 0; text-align: center;">🚀 What I'm Building With Your Help 🚀</h3>
+        
+        <div class="ai-features">
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h4>AI Chatbots</h4>
+                <p>Smart assistants that actually understand what you're saying (unlike my autocorrect)</p>
             </div>
             
-            <div class="reward-item">
-                <span class="reward-emoji">🎨</span>
-                <span class="reward-text">I'll add a comment that makes sense!</span>
-                <span class="reward-amount">$5</span>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h4>Automation Magic</h4>
+                <p>Make boring tasks disappear faster than pizza at a developer meetup</p>
             </div>
             
-            <div class="reward-item">
-                <span class="reward-emoji">🚀</span>
-                <span class="reward-text">I'll actually use Git properly for a week!</span>
-                <span class="reward-amount">$10</span>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h4>Creative AI Tools</h4>
+                <p>Generate content, images, and ideas (way better than my stick figures)</p>
             </div>
             
-            <div class="reward-item">
-                <span class="reward-emoji">🦄</span>
-                <span class="reward-text">I'll write unit tests (maybe)!</span>
-                <span class="reward-amount">$20</span>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h4>Smart Analytics</h4>
+                <p>Understand your data without needing a PhD in statistics</p>
             </div>
             
-            <div class="reward-item">
-                <span class="reward-emoji">🏆</span>
-                <span class="reward-text">I'll stop using "password123" for everything!</span>
-                <span class="reward-amount">$50</span>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h4>AI Security</h4>
+                <p>Protection against spam, scams, and my dad's chain emails</p>
             </div>
             
-            <div class="reward-item">
-                <span class="reward-emoji">👑</span>
-                <span class="reward-text">I'll finally learn what a monad is!</span>
-                <span class="reward-amount">$100</span>
+            <div class="feature-card">
+                <div class="feature-icon">🎓</div>
+                <h4>Learning Assistant</h4>
+                <p>AI that helps you learn (and reminds you to take breaks)</p>
             </div>
-        </div>
-
-        <div class="footer">
-            <p style="color: #FF6B6B; font-size: 1.3em; font-weight: 700;">
-                Thank you for keeping me alive! 💖
-            </p>
-            <p style="margin-top: 10px; color: #666;">
-                * No developers were harmed in the making of this website
-                <br>** Except emotionally, from debugging
-            </p>
-            <p style="margin-top: 20px; font-size: 2em;">
-                🎮 🍕 ☕ 💻 🚀
-            </p>
         </div>
     </div>
+
+    <!-- Progress Section -->
+    <div class="progress-section">
+        <h2 style="text-align: center; color: #764ba2; margin-bottom: 1rem;">
+            🎯 Joe's Survival Progress This Month 🎯
+        </h2>
+        <div class="progress-bar-container">
+            <div class="progress-bar">
+                <span class="progress-text">35% Fed!</span>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 1rem; color: #666;">
+            Help me reach 100% so I can eat something besides cereal for dinner! 🥣
+        </p>
+    </div>
+
+    <!-- Fun Facts -->
+    <div class="fun-facts">
+        <h3 style="text-align: center; color: #764ba2; margin-bottom: 1rem;">
+            🎪 Fun Joe Facts 🎪
+        </h3>
+        <div class="fact-item">🔥 Has debugged code in dreams (it actually worked!)</div>
+        <div class="fact-item">💻 Named his laptop "Wilson" and talks to it</div>
+        <div class="fact-item">☕ Coffee intake: Measured in pots, not cups</div>
+        <div class="fact-item">🎮 Believes "gaming" counts as "user experience research"</div>
+        <div class="fact-item">🐛 Has a pet rubber duck for debugging (his name is Debug)</div>
+    </div>
+
+    <!-- Donation Tiers -->
+    <div class="donation-tiers">
+        <h2 class="story-title">💝 Choose Your Hero Level! 💝</h2>
+        <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 2rem;">
+            Every donation gets you an AI agent or automation tool! The more you give, the cooler it gets! 🚀
+        </p>
+        
+        <div class="tiers-grid">
+            <!-- Coffee Tier -->
+            <div class="tier-card">
+                <div class="tier-emoji">☕</div>
+                <h3 class="tier-name">Coffee Supporter</h3>
+                <div class="tier-amount">$5</div>
+                <div class="tier-reward">Get: Basic AI Chatbot</div>
+                <ul class="tier-benefits">
+                    <li>Keeps Joe awake for 2 hours</li>
+                    <li>Simple Q&A bot for your website</li>
+                    <li>Eternal gratitude + virtual high-five</li>
+                    <li>Your name in the "Coffee Heroes" list</li>
+                </ul>
+                <button class="donate-button" onclick="handleDonation('coffee', 5)">
+                    Feed Me Coffee! ☕
+                </button>
+            </div>
+
+            <!-- Pizza Tier -->
+            <div class="tier-card">
+                <div class="tier-emoji">🍕</div>
+                <h3 class="tier-name">Pizza Patron</h3>
+                <div class="tier-amount">$25</div>
+                <div class="tier-reward">Get: Smart AI Assistant</div>
+                <ul class="tier-benefits">
+                    <li>Feeds Joe for 2 days!</li>
+                    <li>Custom AI assistant for your business</li>
+                    <li>Email automation setup</li>
+                    <li>Priority support (I'll answer within 24hrs!)</li>
+                </ul>
+                <button class="donate-button" onclick="handleDonation('pizza', 25)">
+                    Buy Joe Pizza! 🍕
+                </button>
+            </div>
+
+            <!-- Buffet Tier -->
+            <div class="tier-card">
+                <div class="tier-emoji">🍱</div>
+                <h3 class="tier-name">Buffet Boss</h3>
+                <div class="tier-amount">$50</div>
+                <div class="tier-reward">Get: Pro Automation Suite</div>
+                <ul class="tier-benefits">
+                    <li>Joe eats like royalty for a week!</li>
+                    <li>Full automation package</li>
+                    <li>Custom workflow builder</li>
+                    <li>AI content generator</li>
+                    <li>1-on-1 setup call with Joe!</li>
+                </ul>
+                <button class="donate-button" onclick="handleDonation('buffet', 50)">
+                    Sponsor a Buffet! 🍱
+                </button>
+            </div>
+
+            <!-- Grocery Tier -->
+            <div class="tier-card">
+                <div class="tier-emoji">🛒</div>
+                <h3 class="tier-name">Grocery God</h3>
+                <div class="tier-amount">$100</div>
+                <div class="tier-reward">Get: Enterprise AI System</div>
+                <ul class="tier-benefits">
+                    <li>Joe can buy VEGETABLES! 🥦</li>
+                    <li>Complete AI solution for your company</li>
+                    <li>Multiple bot deployments</li>
+                    <li>Advanced analytics dashboard</li>
+                    <li>Monthly check-ins for 3 months</li>
+                </ul>
+                <button class="donate-button" onclick="handleDonation('grocery', 100)">
+                    Fill the Fridge! 🛒
+                </button>
+            </div>
+
+            <!-- Custom Tier -->
+            <div class="tier-card">
+                <div class="tier-emoji">💎</div>
+                <h3 class="tier-name">Diamond Donor</h3>
+                <div class="tier-amount">Custom</div>
+                <div class="tier-reward">Get: Bespoke AI Solution</div>
+                <ul class="tier-benefits">
+                    <li>Joe names his firstborn after you!</li>
+                    <li>Completely custom AI development</li>
+                    <li>Dedicated support channel</li>
+                    <li>Whatever AI magic you need!</li>
+                    <li>Lifetime updates & improvements</li>
+                </ul>
+                <button class="donate-button" onclick="handleCustomDonation()">
+                    Go Crazy! 💎
+                </button>
+            </div>
+
+            <!-- Subscription Tier -->
+            <div class="tier-card">
+                <div class="tier-emoji">🔄</div>
+                <h3 class="tier-name">Monthly Hero</h3>
+                <div class="tier-amount">$10/mo</div>
+                <div class="tier-reward">Get: Ongoing AI Access</div>
+                <ul class="tier-benefits">
+                    <li>Steady food supply for Joe!</li>
+                    <li>Access to all new AI tools</li>
+                    <li>Premium support forever</li>
+                    <li>Beta access to new features</li>
+                    <li>Monthly AI workshop invites</li>
+                </ul>
+                <button class="donate-button" onclick="handleSubscription()">
+                    Subscribe & Save Joe! 🔄
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spinner -->
+    <div class="spinner" id="spinner"></div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with 💜, ☕, and probably too much caffeine by Joe</p>
+        <p>© 2025 Feed The Joe - A 501(c)(3) in my imagination 😄</p>
+        <p style="margin-top: 1rem;">
+            <em>"No developers were harmed in the making of this website... yet."</em>
+        </p>
+    </footer>
+
+    <!-- No need for Stripe script anymore, using direct payment links! -->
+    
+    <script>
+        // Direct Stripe Payment Links - Already set up and ready to go!
+        const paymentLinks = {
+            coffee: 'https://buy.stripe.com/eVq8wR9lBexv9yWeoT2Nq0Z',      // $5
+            pizza: 'https://buy.stripe.com/14A7sNcxNbljfXk4Oj2Nq10',       // $25
+            buffet: 'https://buy.stripe.com/cNi14p2Xdcpn4eCeoT2Nq11',      // $50
+            grocery: 'https://buy.stripe.com/6oU7sN55l4WVbH42Gb2Nq12',      // $100
+            subscription: 'https://buy.stripe.com/bJeaEZ0P560Z26udkP2Nq13'  // $10/month
+        };
+        
+        // Show notification
+        function showNotification(message, isError = false) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = isError ? 'notification error' : 'notification';
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
+
+        // Show spinner
+        function showSpinner() {
+            document.getElementById('spinner').style.display = 'block';
+        }
+
+        // Hide spinner
+        function hideSpinner() {
+            document.getElementById('spinner').style.display = 'none';
+        }
+
+        // Handle one-time donation - SUPER SIMPLE NOW!
+        function handleDonation(tier, amount) {
+            showSpinner();
+            
+            // Animate the progress bar immediately
+            const progressBar = document.querySelector('.progress-bar');
+            const currentWidth = parseInt(progressBar.style.width) || 35;
+            const newWidth = Math.min(currentWidth + (amount / 2), 100);
+            progressBar.style.width = newWidth + '%';
+            progressBar.querySelector('.progress-text').textContent = `${newWidth}% Fed!`;
+            
+            // Create celebration effect
+            createConfetti();
+            
+            // Redirect to the appropriate Stripe payment link
+            setTimeout(() => {
+                if (paymentLinks[tier]) {
+                    window.location.href = paymentLinks[tier];
+                } else {
+                    // For custom amount, use the $5 link with a note
+                    alert(`Custom amount of $${amount} - Please adjust the quantity on the next page!`);
+                    window.location.href = paymentLinks.coffee;
+                }
+            }, 1000);
+        }
+
+        // Handle custom donation
+        function handleCustomDonation() {
+            const amount = prompt('How much would you like to donate? (Enter number in USD)');
+            
+            if (amount && !isNaN(amount) && amount > 0) {
+                const parsedAmount = parseFloat(amount);
+                showNotification(`Awesome! Preparing your $${parsedAmount} donation! 🎉`);
+                createConfetti();
+                
+                // Calculate how many $5 units this is
+                const units = Math.ceil(parsedAmount / 5);
+                alert(`You're donating $${parsedAmount}! On the next page, please change the quantity to ${units} to match your desired amount.`);
+                
+                setTimeout(() => {
+                    window.location.href = paymentLinks.coffee;
+                }, 2000);
+            } else if (amount !== null) {
+                showNotification('Please enter a valid amount! Joe is still hungry! 🥺', true);
+            }
+        }
+
+        // Handle subscription - DIRECT LINK!
+        function handleSubscription() {
+            showSpinner();
+            showNotification('Setting up your monthly hero subscription! 🦸‍♂️');
+            createConfetti();
+            
+            setTimeout(() => {
+                window.location.href = paymentLinks.subscription;
+            }, 1000);
+        }
+
+        // Add some fun interactions
+        document.addEventListener('DOMContentLoaded', () => {
+            // Make Joe's avatar interactive
+            const joeAvatar = document.querySelector('.joe-avatar');
+            joeAvatar.addEventListener('click', () => {
+                joeAvatar.style.animation = 'none';
+                setTimeout(() => {
+                    joeAvatar.style.animation = 'hungry-pulse 1.5s infinite, bounce 0.5s';
+                }, 10);
+                showNotification("Joe says: 'Feed me please!' 🍕", false);
+            });
+
+            // Random hungry messages
+            const hungryMessages = [
+                "Joe's stomach is making dubstep noises 🎵",
+                "Coffee levels critically low! ☕",
+                "Joe tried to eat his keyboard... again 🎹",
+                "Current fuel: 3 gummy bears and hope 🧸",
+                "Joe's considering photosynthesis as a food source 🌱"
+            ];
+
+            // Show random message every 30 seconds
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    const randomMessage = hungryMessages[Math.floor(Math.random() * hungryMessages.length)];
+                    console.log(randomMessage);
+                }
+            }, 30000);
+        });
+
+        // Add confetti effect on donation
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.zIndex = '9999';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear`;
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+
+        // Add falling animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
